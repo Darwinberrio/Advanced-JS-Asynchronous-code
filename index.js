@@ -23,50 +23,55 @@ const connect = async (url) => {
 /*1.- Declara una funcion getAllBreeds que devuelva un array de strings con todas las razas de perro. */
 
     function getAllBreeds(){
-        const array = connect('list/all')
-        .then((resp) => {
-          array.forEach(element => {
-            
-          });
+        connect('list/all')
+        .then((respuesta) => {
+          const array =  Object.keys(respuesta);
+          console.log(array);
+          return array;
+        })
+        .catch((error) => {
+            console.log('error', error)
+        })  
+    }
+
+/*2.- Declara una función getRandomDog que obtenga una imagen random de una raza.*/
+
+    function getRandomDog(){
+        connect('image/random')
+        .then((imagen) => {
+          console.log(imagen);
+          return imagen;            
+        })
+        .catch((error) => {
+            console.log('error', error)
+        })        
+    }
+
+    /*3.- Declara una función getAllImagesByBreed que obtenga todas las imágenes de la raza komondor.*/
+
+    function getAllImagesByBreed(){
+        connect('komondor/images')
+        .then((imagenes) => {
+          console.log(imagenes);
+          return imagenes;            
         })
         .catch((error) => {
             console.log('error', error)
         })
-        // console.log(array);
     }
 
-    getAllBreeds()
+    /*4.- Declara una funcion getAllImagesByBreed2(breed) que devuelva las imágenes de la raza pasada por el argumento*/
 
-/*2.- Declara una función getRandomDog que obtenga una imagen random de una raza.*/
-
-   /*  function getRandomDog(){
-        const array = connect('image/random')
-        console.log(array);
+    function getAllImagesByBreed2(array){
+        connect(`${array}/images`)
+        .then((images) => {
+          console.log(images);
+          return images;   
+        })
+        .catch((error) => {
+            console.log('error', error)
+        })
     }
-
-    getRandomDog() */
-
-
-    /*3.- Declara una función getAllImagesByBreed que obtenga todas las imágenes de la raza komondor.*/
-/* 
-    function getAllImagesByBreed(){
-        const array = connect('image/random')
-        console.log(array);
-    }
-
-    getAllImagesByBreed() */
-
-
-
-
-/*    4.- Declara una funcion getAllImagesByBreed2(breed) que devuelva las imágenes de la raza pasada por el argumento*/
-
-    /*   function getAllImagesByBreed2(){
-        const array = connect('image/random')
-        console.log(array);
-    }
-
-    getAllImagesByBreed2() */
 
 /*GitHub API (I) - ¿Quieres saber mi información? Aquí la tienes
 
